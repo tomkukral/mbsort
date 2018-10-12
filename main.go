@@ -60,6 +60,11 @@ func main() {
 	mm := []*mailbox{}
 
 	for _, i := range strings.Split(string(fr), " ") {
+		// skip mailboxes
+		if i == "mailboxes" {
+			continue
+		}
+
 		mb := &mailbox{
 			Name:     i,
 			Priority: getPosition(priorities, strings.Replace(i, `"`, "", -1)),
@@ -81,11 +86,14 @@ func main() {
 
 	// sort boxes
 	sort.SliceStable(mm, func(i int, j int) bool {
-		return mm[i].Name == "mailboxes" || mm[i].Priority < mm[j].Priority
+		if debug {
+			log.Printf("Compare %+v with %+v", mm[i], mm[j])
+		}
+		return mm[i].Priority < mm[j].Priority
 	})
 
 	// export to srt
-	st := []string{}
+	st := []string{"mailboxes"}
 	for _, i := range mm {
 		st = append(st, i.Name)
 	}
