@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"sort"
@@ -21,8 +22,8 @@ func main() {
 	viper.SetDefault("input", "$HOME/.mutt/mailboxes_raw")
 	viper.SetDefault("output", "$HOME/.mutt/mailboxes")
 	viper.SetDefault("priorities", []string{})
-	viper.SetDefault("defaultPrioriy", 1000)
-	viper.SetDefault("debug", true)
+	viper.SetDefault("defaultPriority", 1000)
+	viper.SetDefault("debug", false)
 
 	err := viper.ReadInConfig()
 	if err != nil {
@@ -67,6 +68,9 @@ func main() {
 		// default metric
 		if mb.Priority == 0 {
 			mb.Priority = defaultPriority
+			if debug {
+				log.Printf("Default priority %d for %s", mb.Priority, mb.Name)
+			}
 		}
 
 		if debug {
@@ -77,7 +81,7 @@ func main() {
 
 	// sort boxes
 	sort.SliceStable(mm, func(i int, j int) bool {
-		return mm[i].Priority > mm[j].Priority && mm[i].Name != "mailboxes"
+		return mm[i].Name == "mailboxes" || mm[i].Priority < mm[j].Priority
 	})
 
 	// export to srt
@@ -86,7 +90,12 @@ func main() {
 		st = append(st, i.Name)
 	}
 
-	err = ioutil.WriteFile(outputFile, []byte(strings.Join(st, " ")), 0644)
+	output := strings.Join(st, " ")
+	if debug {
+		fmt.Println(output)
+	}
+
+	err = ioutil.WriteFile(outputFile, []byte(output), 0644)
 	if err != nil {
 		log.Fatalf("Failed writing output file: %s", err)
 	}
