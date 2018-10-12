@@ -14,7 +14,7 @@ func getPosition(s []string, value string) int {
 		}
 	}
 
-	return 0
+	return -1
 }
 
 // remove element from slice

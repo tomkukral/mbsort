@@ -66,7 +66,7 @@ func main() {
 		}
 
 		// default metric
-		if mb.Priority == 0 {
+		if mb.Priority == -1 {
 			mb.Priority = defaultPriority
 			if debug {
 				log.Printf("Default priority %d for %s", mb.Priority, mb.Name)
