@@ -20,6 +20,6 @@ func TestGetPosition(t *testing.T) {
 	}
 
 	for _, n := range td {
-		assert.Equal(t, n.expected, getPosition(&ts, n.value), "Wrong position returned")
+		assert.Equal(t, n.expected, getPosition(ts, n.value), "Wrong position returned")
 	}
 }
