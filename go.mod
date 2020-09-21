@@ -4,7 +4,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/hashicorp/hcl v1.0.0
-	github.com/magiconair/properties v1.8.0
+	github.com/magiconair/properties v1.8.3
 	github.com/mitchellh/mapstructure v1.1.2
 	github.com/pelletier/go-toml v1.8.1
 	github.com/pmezard/go-difflib v1.0.0
