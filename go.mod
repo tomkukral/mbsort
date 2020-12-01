@@ -16,5 +16,5 @@ require (
 	github.com/stretchr/testify v1.6.1
 	golang.org/x/sys v0.0.0-20191005200804-aed5e4c7ecf9
 	golang.org/x/text v0.3.3
-	gopkg.in/yaml.v2 v2.3.0
+	gopkg.in/yaml.v2 v2.4.0
 )
