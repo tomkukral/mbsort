@@ -6,7 +6,7 @@ require (
 	github.com/hashicorp/hcl v1.0.0
 	github.com/magiconair/properties v1.8.3
 	github.com/mitchellh/mapstructure v1.4.0
-	github.com/pelletier/go-toml v1.8.1
+	github.com/pelletier/go-toml v1.9.1
 	github.com/pmezard/go-difflib v1.0.0
 	github.com/spf13/afero v1.4.1
 	github.com/spf13/cast v1.3.1
